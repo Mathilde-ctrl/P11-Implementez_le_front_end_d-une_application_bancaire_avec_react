@@ -7,7 +7,9 @@ function Home(){
   return(
     <div>
       <main>
-        <Nav />
+        <Nav 
+          Text="Sign In"
+        />
         <Hero />
         <Features />
       </main>

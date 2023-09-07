@@ -1,4 +1,4 @@
-
+import Button from "../button/button"
 
 function Form(){
   return(
@@ -18,7 +18,11 @@ function Form(){
           <input type="checkbox" id="remember-me" />
             <label for="remember-me">Remember me</label>
         </div>
-        <button class="sign-in-button">Sign In</button> 
+        <Button
+          text="Sign In"
+          linkTo="/user"
+          classStyle="sign-in-button"
+        />
       </form>
     </section>
     

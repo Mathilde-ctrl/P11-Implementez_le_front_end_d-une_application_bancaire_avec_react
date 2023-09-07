@@ -6,7 +6,9 @@ import Form from "../../components/form/form";
 function Login(){
   return(
     <div>
-      <Nav />
+      <Nav 
+        Text="Sign In"
+      />
       <main class="main bg-dark" >
         <Form />
       </main>
