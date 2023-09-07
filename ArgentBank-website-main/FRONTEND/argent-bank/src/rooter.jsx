@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, } from 'react-router-dom';
 
-// import App from './App';
+import Login from './pages/login/login';
 import Home from './pages/home/home';
 
 function Rooter(){
@@ -10,7 +10,7 @@ function Rooter(){
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
-          
+          <Route path='/sign-in' element={<Login />} />
         </Routes>
       </Router>
     </React.StrictMode>

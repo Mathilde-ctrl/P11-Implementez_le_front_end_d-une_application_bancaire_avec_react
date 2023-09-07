@@ -5,7 +5,7 @@ function Nav(){
 
   return(
     <nav class="main-nav">
-      <a class="main-nav-logo" href="./index.html">
+      <a class="main-nav-logo" href="./">
         <img
           src={argentBankLogo}
           class="main-nav-logo-image"
@@ -14,7 +14,7 @@ function Nav(){
         <h1 class="sr-only">Argent Bank</h1>
       </a>
       <div>
-        <a class="main-nav-item" href="./sign-in.html">
+        <a class="main-nav-item" href="./sign-in">
           <i class="fa fa-user-circle"></i>
           Sign In
         </a>
