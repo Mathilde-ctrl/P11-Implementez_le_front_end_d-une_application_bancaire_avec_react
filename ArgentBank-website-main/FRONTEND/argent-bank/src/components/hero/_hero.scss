@@ -1,4 +1,4 @@
-
+@use '../../sass/color';
 
 .hero {
   background-position: 0 -50px;
@@ -20,7 +20,7 @@
   top: 50px;
   right: 10%;
   width: 200px;
-  background: white;
+  background: color.$neutral-fourth-color;
   padding: 2rem;
   text-align: left;
   margin: 0 auto;

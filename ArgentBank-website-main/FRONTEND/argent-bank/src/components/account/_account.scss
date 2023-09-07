@@ -1,11 +1,11 @@
-
+@use '../../sass/color';
 
 .account {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 1px solid black;
-  background-color: #fff;
+  border: 1px solid color.$neutral-main-color;
+  background-color: color.$neutral-fourth-color;
   width: 80%;
   margin: 0 auto;
   flex-direction: column;
