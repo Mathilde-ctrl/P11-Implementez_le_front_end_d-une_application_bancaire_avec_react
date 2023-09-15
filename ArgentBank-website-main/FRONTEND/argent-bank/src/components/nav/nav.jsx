@@ -1,10 +1,11 @@
 import argentBankLogo from './argentBankLogo.webp';
 
 
-function Nav({Name, Text, Icon}){
+function Nav({Name, Text, Icon, Link , Function}){
 
   return(
     <nav class="main-nav">
+      
       <a class="main-nav-logo" href="./">
         <img
           src={argentBankLogo}
@@ -13,8 +14,9 @@ function Nav({Name, Text, Icon}){
         />
         <h1 class="sr-only">Argent Bank</h1>
       </a>
+
       <div class="main-nav-links">
-        <a class="main-nav-item-1" href='/'>
+        <a class="main-nav-item-1" href='/login'>
           <i class="fa fa-user-circle"></i>
         </a>
         {Name && (
@@ -23,11 +25,11 @@ function Nav({Name, Text, Icon}){
           </a>
         )}
         {Icon && (
-          <a class="main-nav-item-2" href='/sign-in'>
+          <a class="main-nav-item-2" href='/'>
             <i class={Icon}></i>
           </a>
         )}
-        <a class="main-nav-item-2" href='/sign-in'>
+        <a class="main-nav-item-2" href={Link} onClick={Function}>
           <p class="main-nav-text">{Text}</p>
         </a>
       </div>

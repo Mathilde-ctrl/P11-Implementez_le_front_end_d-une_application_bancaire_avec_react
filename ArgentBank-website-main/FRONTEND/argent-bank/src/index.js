@@ -4,12 +4,18 @@ import ReactDOM from 'react-dom/client';
 import './main.scss';
 import reportWebVitals from './reportWebVitals';
 
-import Rooter from './rooter';
+// Permet de connecter React with Redux en rendant le store disponible
+ import {Provider} from 'react-redux';  
+ import store from './redux/store'; 
+
+ import Rooter from './rooter';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Rooter /> 
+    <Provider store={store}>
+      <Rooter /> 
+    </Provider>
   </React.StrictMode>
 );
 

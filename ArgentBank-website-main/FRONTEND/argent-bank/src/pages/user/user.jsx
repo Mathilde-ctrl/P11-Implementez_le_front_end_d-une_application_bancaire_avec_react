@@ -4,13 +4,23 @@ import Footer from "../../components/footer/footer";
 import Welcome from "../../components/welcome/welcome";
 import Account from "../../components/account/account";
 
+
 function User(){
+  const token = sessionStorage.getItem('token');
+  console.log("token : ", token)
+
+  function SignOut(){
+    sessionStorage.removeItem('token')
+  }
+
   return(
-    <div>
+    <div> 
       <Nav 
         Name="Name"
         Icon="fa fa-sign-out"
         Text="Sign out"
+        Function={SignOut}
+        Link="/"
       />
       <main class="main bg-dark">
         <Welcome 

@@ -9,6 +9,7 @@ function Home(){
       <main>
         <Nav 
           Text="Sign In"
+          Link={"/Login"}
         />
         <Hero />
         <Features />
