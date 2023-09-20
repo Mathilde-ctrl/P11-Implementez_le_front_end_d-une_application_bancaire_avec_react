@@ -6,7 +6,7 @@ function PrivateRoute({ children }) {
 
   if (!token) {
     // Redirect to the home page if no token is found
-    return <Navigate to="/" />;
+    return <Navigate to="/login" />;
   }
 
   // Render the protected component (User) if a token is present

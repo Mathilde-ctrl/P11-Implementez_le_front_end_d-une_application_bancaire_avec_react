@@ -14,9 +14,8 @@ function Form() {
     dispatch(login({email, password}))
     
   }
-
   return (
-    <section className="sign-in-content">
+    <section className="sign-in-content" id="formWindow">
       <i className="fa fa-user-circle"></i>
       <h1>Sign In</h1>
       <form onSubmit={handleLogin}>
@@ -40,6 +39,7 @@ function Form() {
             required
           />
         </div>
+        <p className="errorMessage" id="textErrorMessage"></p>
         <div className="input-remember">
           <input type="checkbox" id="remember-me" />
           <label htmlFor="remember-me">Remember me</label>

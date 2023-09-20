@@ -18,8 +18,11 @@ export const login = createAsyncThunk('auth/login', async ({ email, password }) 
       window.location.href = "/profile";
       return data;
     } else {
+      const errorMessage = document.getElementById("textErrorMessage")
+      const signIn = document.getElementById("formWindow");
       const errorData = await response.json();
-      throw new Error(errorData.message || 'Login failed');
+      signIn.classList.add("expanded")
+      errorMessage.textContent = errorData.message || 'Login failed';
     }
   } catch (error) {
     throw error;
