@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 // import Button from "../button/button";
-import { login } from "../../redux/reducers/userReducer"
-import { useDispatch } from 'react-redux';
+// import { login } from "../../api/fetch"
+
+import { useDispatch } from "react-redux";
+import { loginUser } from '../../api/authThunk';
 
 function Form() {
   // Send actions to the redux store. 
@@ -9,9 +11,9 @@ function Form() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    dispatch(login({email, password}))
+    dispatch(loginUser({email, password}));
     
   }
   return (
@@ -44,7 +46,7 @@ function Form() {
           <input type="checkbox" id="remember-me" />
           <label htmlFor="remember-me">Remember me</label>
         </div>
-        <input type="submit" onClick={handleLogin} value="Sign In" className="sign-in-button" />
+        <input type="submit" value="Sign In" className="sign-in-button" />
         
         
       </form>
@@ -53,13 +55,3 @@ function Form() {
 }
 
 export default Form;
-
-/**
- * 
- * <Button
-          type="submit"
-          text="Sign In"
-          classStyle="sign-in-button"
-        />
- * 
- */
