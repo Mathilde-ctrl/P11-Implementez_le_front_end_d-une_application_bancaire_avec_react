@@ -4,9 +4,6 @@ import Footer from "../../components/footer/footer";
 import Welcome from "../../components/welcome/welcome";
 import Account from "../../components/account/account";
 
-
-import { useSelector } from "react-redux";
-
 function User(){
   // This userName is going away if refresh because not stored. 
   // const userName = useSelector((state) => state.auth.userName)
@@ -28,20 +25,20 @@ function User(){
     sessionStorage.removeItem('userName')
   }
 
-  // To be able to see state of the Slices in the console
-    console.log(
-      useSelector((store) => {console.log(store)})
-    )
-  //
+  
 
   return(
     <div> 
       <Nav 
+        logoLink='/'
+        signInLink='/'
+        profileLink='/profile'
+        iconLink='/profile'
         Name={userName}
         Icon="fa fa-sign-out"
         Text="Sign out"
         Function={SignOut}
-        Link="/"
+        
       />
       <main className="main bg-dark">
         <Welcome 

@@ -31,14 +31,19 @@ export const getloginUser = createAsyncThunk('auth/login', async ({ email, passw
         console.log("profileData: ", profileData.body);
 
         dispatch(loginSuccess(profileData.body));
+       
         return
       } else {
-        const errorData = await getUserProfileResponse.json();
-        throw new Error(errorData.message || 'Failed to fetch profile data');
+        
       }
     } else {
+      
+      const errorMessage = document.getElementById("textErrorMessage")
+      const signIn = document.getElementById("formWindow");
       const errorData = await loginResponse.json();
-      throw new Error(errorData.message || 'Login failed');
+      signIn.classList.add("expanded")
+      errorMessage.textContent = errorData.message || 'Login failed';
+         
     }
   } catch (error) {
     dispatch(loginFailure(error.message || 'Login failed'));
