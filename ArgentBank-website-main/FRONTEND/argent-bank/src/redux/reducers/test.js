@@ -53,7 +53,7 @@ export const authSlice = createSlice({
   name: 'auth',
   initialState: {
     isAuthenticated: false,
-    profileData: null,
+    profileData: {},
     error: null,
     isLoading: true,
     userName:"mathy"
@@ -64,6 +64,7 @@ export const authSlice = createSlice({
       state.profileData = action.payload;
       state.error = null;
       state.userName = action.payload.userName //
+      sessionStorage.setItem('userName', action.payload.userName)
       console.log('************************' +  action.payload.email)
     },
     loginFailure: (state, action) => {

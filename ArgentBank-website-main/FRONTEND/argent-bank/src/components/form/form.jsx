@@ -14,18 +14,23 @@ function Form() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  //
+
+
+  //
+
 
   const handleLogin = (e) => {
     e.preventDefault();
-    //dispatch(loginUser({email, password}));
     dispatch(getloginUser({email, password}))
       .then(() => {
         navigate('/profile')
       })
       .catch((error) => {})
     
-
   }
+ 
+
   return (
     <section className="sign-in-content" id="formWindow">
       <i className="fa fa-user-circle"></i>
