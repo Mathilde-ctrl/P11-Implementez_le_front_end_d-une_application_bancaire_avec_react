@@ -1,4 +1,4 @@
-
+/**
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { loginSuccess, loginFailure } from '../redux/reducers/authSlice';
 
@@ -48,3 +48,5 @@ export const loginUser = createAsyncThunk('auth/login', async ({ email, password
     throw error;
   }
 });
+
+ */

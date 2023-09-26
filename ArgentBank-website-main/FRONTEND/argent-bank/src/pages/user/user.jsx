@@ -4,13 +4,15 @@ import Footer from "../../components/footer/footer";
 import Welcome from "../../components/welcome/welcome";
 import Account from "../../components/account/account";
 
+
 import { useSelector } from "react-redux";
 
 function User(){
 
-  const profileData = useSelector((state) => state.auth)
-  console.log('*****' + profileData.profileData)
-  const userName = profileData ? profileData.userName : "No"
+  const userName = useSelector((state) => state.auth.userName)
+  // const profileData = useSelector((state) => state.auth.body)
+  //console.log('*****' + profileData.profileData)
+  // const userName = profileData ? profileData.userName : "No"
 
   const token = sessionStorage.getItem('token');
   console.log("token : ", token)
@@ -24,7 +26,6 @@ function User(){
       useSelector((store) => {console.log(store)})
     )
   //
-
 
   return(
     <div> 

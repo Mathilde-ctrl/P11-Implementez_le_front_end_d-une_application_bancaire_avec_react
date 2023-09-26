@@ -3,18 +3,28 @@ import React, { useState } from "react";
 // import { login } from "../../api/fetch"
 
 import { useDispatch } from "react-redux";
-import { loginUser } from '../../api/authThunk';
+// import { loginUser } from '../../api/authThunk';
+import { getloginUser } from '../../redux/reducers/test';
+import { useNavigate } from 'react-router-dom';
 
 function Form() {
+  const navigate = useNavigate(); 
+
   // Send actions to the redux store. 
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(loginUser({email, password}));
+    //dispatch(loginUser({email, password}));
+    dispatch(getloginUser({email, password}))
+      .then(() => {
+        navigate('/profile')
+      })
+      .catch((error) => {})
     
+
   }
   return (
     <section className="sign-in-content" id="formWindow">
