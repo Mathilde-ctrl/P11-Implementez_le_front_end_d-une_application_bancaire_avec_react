@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import { useDispatch } from "react-redux";
-import { getloginUser } from '../../redux/reducers/test';
+import { getloginUser } from '../../redux/reducers/authSlice';
 import { useNavigate } from 'react-router-dom';
 import store from '../../redux/store'
 
