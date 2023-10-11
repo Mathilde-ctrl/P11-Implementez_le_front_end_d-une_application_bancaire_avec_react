@@ -5,7 +5,6 @@ import Form from "../../components/form/form";
 
 // This is the Login component that gather other smaller components
 function Login(){
- 
   return(
     <div>
       <Nav 

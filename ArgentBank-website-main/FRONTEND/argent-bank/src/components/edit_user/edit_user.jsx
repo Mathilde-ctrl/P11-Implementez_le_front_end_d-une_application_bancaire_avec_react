@@ -37,7 +37,7 @@ function Edit({saveClick, cancelClick, firstName, lastName}){
   return(
     <div className="edit">
       <h2>Edit user info</h2>
-      <form action="">
+      <form>
         <div className="field-edit">
           <label htmlFor="userName" className="label-edit">User Name:</label>
           <input 

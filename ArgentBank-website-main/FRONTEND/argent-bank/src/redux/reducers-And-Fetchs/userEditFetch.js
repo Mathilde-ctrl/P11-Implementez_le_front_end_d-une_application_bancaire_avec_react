@@ -14,12 +14,12 @@ export const changeUserName = createAsyncThunk('user/changeUserName', async (new
       },
       body: JSON.stringify({ userName: newUserName }),
     });
-
+ 
     const data = await response.json();
 
     // Return the updated userName
     return data;
-  } catch (error) {
-    console.error(error);
+  } catch {
+    console.error("Error : An error occured whith the Put request");
   }
 });

@@ -2,7 +2,7 @@
  * "createAsyncThunk" est une fonction provenant de toolkit qui simplifie le processus de 
  * création d'actions asynchrone dans Redux. 
  * 
- * 3 actions ("pending", 'fulifilled', "rejected")
+ * 3 actions ("pending", 'fulfilled', "rejected")
  */ 
  
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
@@ -10,8 +10,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 /**
  * Export @variable getLoginUser avec createAsyncThunk 
  * 
- * @param(email, password)
- * @objet contenant la méthode dispatch
+ * @param(email, password), (dispatch)
+ * "dispatch" is in the parameter to have direct access to the dispatch function 
  */
 export const getloginUser = createAsyncThunk('auth/login', async ({ email, password }, { dispatch }) => {
   try {
@@ -45,17 +45,22 @@ export const getloginUser = createAsyncThunk('auth/login', async ({ email, passw
         // Récupère les données de l'utilisateur dans profileData
         const profileData = await getUserProfileResponse.json();
 
-        // Permet de voir l'état des données récupérés suite à la deuxième requête. 
-        console.log("profileData: ", profileData.body);
-
         // Envoye les données dans le store avec l'action loginSuccess. 
         dispatch(loginSuccess(profileData.body)); 
-
         return
       } else {
-        const errorInfo = await getUserProfileResponse.json()
-        // envoye une erreur dans le store 
-        dispatch(loginFailure(errorInfo))
+        // Récupère un paragraphe avec id "textErrorMessage"
+        const errorMessage = document.getElementById("textErrorMessage")
+        // Récupère la fenêtre du form
+        const signIn = document.getElementById("formWindow");
+
+        // Envoye le messages d'erreur dans le store
+        dispatch(fetchUserDataFailure("Error: Failed to load user data"))
+
+        // Ajoute la classe "expended" à la fenêtre pour augmenter la longueur et afficher le message d'erreur
+        signIn.classList.add("expanded")
+        // Affiche le text du message d'erreur. 
+        errorMessage.textContent = "Error: Failed to load user data";
       }
     } else {
       // Récupère un paragraphe avec id "textErrorMessage"
@@ -66,28 +71,39 @@ export const getloginUser = createAsyncThunk('auth/login', async ({ email, passw
       // Extrait les données d'échec d'authentification 
       const errorData = await loginResponse.json();
 
-      // Envoye les messages d'erreur dans le store avec l'action loginFailure 
+      // Envoye les messages d'erreur dans le store 
       dispatch(loginFailure(errorData.message || 'login failed'))
 
       // Ajoute la classe "expended" à la fenêtre pour augmenter la longueur et afficher le message d'erreur
       signIn.classList.add("expanded")
       // Affiche le text du message d'erreur. 
       errorMessage.textContent = errorData.message || 'Login failed';
-         
     }
-  } catch (error) {
-    dispatch(loginFailure(error.message || 'Login failed'));
-  }
+  } 
+  catch{
+    // Récupère un paragraphe avec id "textErrorMessage"
+    const errorMessage = document.getElementById("textErrorMessage")
+    // Récupère la fenêtre du form
+    const signIn = document.getElementById("formWindow");
+
+    // Envoye les messages d'erreur dans le store 
+    dispatch(generalFailure('An unexpected error occurred'));
+
+    signIn.classList.add("expanded")
+    // Affiche le text du message d'erreur. 
+    errorMessage.textContent = 'An unexpected error occurred';
+  } 
 });
 
 export const authSlice = createSlice({
   name: 'auth',
   initialState: {
     isAuthenticated: false,
-    isLoading: true,
     userName:"", 
     lastName:"",  
     firstName:'', 
+    error:false,
+    errorMessage: '',
   },
   reducers: {
     loginSuccess: (state, action) => {
@@ -96,11 +112,20 @@ export const authSlice = createSlice({
       state.userName = action.payload.userName 
       state.lastName = action.payload.lastName    
       state.firstName = action.payload.firstName  
-
-      console.log('***********authSlice*************' +  action.payload.userName)
     },
-    loginFailure: (state) => {
+    loginFailure: (state, action) => {
       state.isAuthenticated = false;
+      state.error = true;
+      state.errorMessage = action.payload;
+    },
+    fetchUserDataFailure:(state, action) => {
+      state.isAuthenticated = false;
+      state.error = true;
+      state.errorMessage = action.payload;
+    },
+    generalFailure:(state, action) => {
+      state.error = true;
+      state.errorMessage = action.payload
     },
     logout:(state) => {
       state.isAuthenticated = false;
@@ -109,21 +134,8 @@ export const authSlice = createSlice({
       state.lastName = "";
     },
   },
-  extraReducers:(builder) => {
-    builder
-      .addCase(getloginUser.pending, (state) => {
-        state.isLoading = true
-      })
-      .addCase(getloginUser.fulfilled, (state, action) => {
-        console.log(action);
-        state.isLoading = false
-      })
-      .addCase(getloginUser.rejected, (state) => {
-        state.isLoading = false
-      })
-  }
 });
 
-export const { loginSuccess, loginFailure, logout } = authSlice.actions;
+export const { loginSuccess, loginFailure, logout, fetchUserDataFailure, generalFailure } = authSlice.actions;
 
 export const sliceReducer = authSlice.actions;

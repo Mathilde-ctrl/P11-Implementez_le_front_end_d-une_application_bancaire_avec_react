@@ -37,7 +37,7 @@ function User(){
   function toggleEditing(){
     setIsEditing(!isEditing);
   }
-
+ 
   /**
    * @function SignOut - Remove the token in Session Storage
    * Send the logout action with dispatch 

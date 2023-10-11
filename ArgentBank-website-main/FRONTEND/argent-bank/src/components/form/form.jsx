@@ -41,7 +41,7 @@ function Form() {
         // Redirect to the profile page if successful login
         navigate('/profile');
       } 
-    })  
+    })   
   };
 
   return (
