@@ -230,7 +230,7 @@ paths:
       parameters:
         - in: body
           name: categoryId
-          description: The ID of the new category for the transaction.
+          description: The new category selected for the transaction.
           required: true
           schema:
             $ref: '#/definitions/ChangeCategory'
@@ -343,7 +343,7 @@ definitions:
           - ...              
       note:
         type: string
-        description: A brief description of the transaction
+        description: A short description of the transaction
         #maxLenght: 150 
                   
   TransactionSummary:
@@ -381,4 +381,4 @@ definitions:
     properties:
       categoryId: 
         type: string
-        description: The Id of the new category 
+        description: The new category 
