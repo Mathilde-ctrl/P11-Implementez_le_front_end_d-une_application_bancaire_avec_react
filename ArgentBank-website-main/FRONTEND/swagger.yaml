@@ -161,7 +161,7 @@ paths:
         '500':
           description: Internal Server Error
         
-  /transactions/{transactionId}:
+  /transactions/{transactionId}/note:
     post:
       security:
         - Bearer: []
@@ -190,8 +190,6 @@ paths:
           description: Unauthorized request (missing or expired token)
         '500':
           description: Internal Server Error
-
-  /transactions/{transactionId}/note:
     delete:
       security:
         - Bearer: []
@@ -345,6 +343,9 @@ definitions:
         type: string
         description: A short description of the transaction
         #maxLenght: 150 
+      transactionId:
+        type: string
+        description: A unique id per transaction 
                   
   TransactionSummary:
     type: object
